@@ -61,8 +61,12 @@ private:
     int cameraDeviceOpen(int camera_id, struct hw_device_t **hw_device);
     static int camera_device_open(const struct hw_module_t *module, const char *id,
                 struct hw_device_t **hw_device);
+#ifdef QCAMERA_HAL1_SUPPORT
     static int openLegacy(
             int32_t cameraId, uint32_t halVersion, struct hw_device_t** hw_device);
+#else
+    static int openLegacy(int32_t cameraId, uint32_t halVersion);
+#endif
     int setTorchMode(const char* camera_id, bool on);
 public:
     static struct hw_module_methods_t mModuleMethods;

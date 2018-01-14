@@ -495,8 +495,12 @@ struct hw_module_methods_t QCamera2Factory::mModuleMethods = {
  * RETURN     : 0  -- success
  *              none-zero failure code
  *==========================================================================*/
+#ifdef QCAMERA_HAL1_SUPPORT
 int QCamera2Factory::openLegacy(
         int32_t cameraId, uint32_t halVersion, struct hw_device_t** hw_device)
+#else
+int QCamera2Factory::openLegacy(int32_t cameraId, uint32_t halVersion)
+#endif
 {
     int rc = NO_ERROR;
 
